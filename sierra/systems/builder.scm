@@ -21,7 +21,12 @@
          (append (if use-nvidia
                    (list (simple-service
                            'custom-udev-rules udev-service-type
-                           (list nvidia-driver)))
+                           (list nvidia-driver))
+                         (service kernel-module-loader-service-type
+                                  '("ipmi_devintf"
+                                    "nvidia"
+                                    "nvidia_modeset"
+                                    "nvidia_uvm")))
                    (cons))
                  (list (service dhcp-client-service-type))
                  %base-services
