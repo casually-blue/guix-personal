@@ -31,9 +31,9 @@
     (description description)
     (license non-copyleft)))
 
-(font-nerdfont-builder
+(define-public font-fantasquesans-mono-nerdfont-ttf (font-nerdfont-builder
   "FantasqueSansMono"
   "2.1.0"
   "147h15k3ni0w6chxkrah2fk4klhdhq8y1d3nbx763h9ia3mnggv6"
   "Fantasque Sans Mono Nerd Font"
-  "\"wibbly-wobbly handwriting-like fuzziness\", takes some inspiration from Inconsolata and Monaco")
+  "\"wibbly-wobbly handwriting-like fuzziness\", takes some inspiration from Inconsolata and Monaco"))
