@@ -44,6 +44,8 @@
                      linux
                      linux-libre))
 
+           (kernel-loadable-modules (if use-nvidia (list nvidia-driver) cons))
+
            (kernel-arguments (append (if use-nvidia
                                        '("modprobe.blacklist=nouveau")
                                        '("")) %default-kernel-arguments))
