@@ -66,4 +66,4 @@
            ;; Globally-installed packages.
            (packages (append needed-packages %base-packages))
 
-           (services (make-services use-nvidia))
+           (services (make-services use-nvidia))))
