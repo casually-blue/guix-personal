@@ -1,21 +1,31 @@
 (define-module (sierra systems builder)
-  #:use-module (gnu)
+               #:use-module (gnu)
 
-  #:use-module (nongnu system linux-initrd)
+               #:use-module (nongnu system linux-initrd)
 
-  #:use-module (gnu services networking)
-  #:use-module (gnu services ssh)
+               #:use-module (gnu services networking)
+               #:use-module (gnu services ssh)
 
-  #:use-module (gnu packages screen)
-  #:use-module (gnu packages ssh)
-  #:use-module (gnu packages vim)
-  #:use-module (gnu packages shells)
-  #:use-module (nongnu packages nvidia)
+               #:use-module (gnu packages screen)
+               #:use-module (gnu packages ssh)
+               #:use-module (gnu packages vim)
+               #:use-module (gnu packages shells)
+               #:use-module (nongnu packages nvidia)
 
-  #:use-module (nongnu packages linux)
-  #:use-module (gnu packages linux)
+               #:use-module (nongnu packages linux)
+               #:use-module (gnu packages linux)
 
-  #:export (sierra-os-builder))
+               #:export (sierra-os-builder))
+
+(define* (make-services use-nvidia)
+         (append (if use-nvidia
+                   (list (simple-service
+                           'custom-udev-rules udev-service-type
+                           (list nvidia-driver)))
+                   (cons))
+                 (list (service dhcp-client-service-type))
+                 %base-services
+                 ))
 
 (define* (sierra-os-builder
            #:key hostname file-sys needed-packages use-nvidia nonfree-firmware)
@@ -51,6 +61,4 @@
            ;; Globally-installed packages.
            (packages (append needed-packages %base-packages))
 
-           ;; Add services to the baseline: a DHCP client and
-           ;; an SSH server.
-           (services (append (list (service dhcp-client-service-type)) %base-services))))
+           (services (make-services use-nvidia))
