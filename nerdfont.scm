@@ -1,5 +1,3 @@
-(define-module (nerdfont))
-
 (use-modules
   (guix download)
   (guix utils)
