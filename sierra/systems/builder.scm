@@ -5,6 +5,7 @@
 
                #:use-module (gnu services networking)
                #:use-module (gnu services ssh)
+               #:use-module (gnu services linux)
 
                #:use-module (gnu packages screen)
                #:use-module (gnu packages ssh)
