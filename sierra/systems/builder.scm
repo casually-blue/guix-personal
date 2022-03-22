@@ -22,7 +22,7 @@
 
 
 
-(define graft_nvda
+(define transform
   (options->transformation
     '((with-graft . "mesa=nvda"))))
 
@@ -42,7 +42,7 @@
                        (set-xorg-configuration
                          (xorg-configuration
                            (modules (append (if use-nvidia nvidia-driver cons) %default-xorg-modules))
-                           (server (if use-nvidia (graft_nvda xorg-server) xorg-server))
+                           (server (if use-nvidia (transform xorg-server) xorg-server))
                            (drivers (if use-nvidia '("nvidia") '()))
                            (keyboard-layout (keyboard-layout "us" "altgr-intl")))))
                  %base-services
