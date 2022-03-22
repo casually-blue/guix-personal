@@ -34,8 +34,7 @@
                                     "nvidia_modeset"
                                     "nvidia_uvm")))
                    (cons))
-                 (list (service dhcp-client-service-type)
-                       (service gnome-desktop-service-type)
+                 (list (service gnome-desktop-service-type)
                        (service elogind-service-type)
                        (service network-manager-service-type)
 
