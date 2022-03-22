@@ -35,7 +35,6 @@
                                     "nvidia_uvm")))
                    (cons))
                  (list (service gnome-desktop-service-type)
-                       (service elogind-service-type)
                        (service network-manager-service-type)
                        (service wpa-supplicant-service-type)
 
