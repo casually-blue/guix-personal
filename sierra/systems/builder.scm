@@ -18,6 +18,12 @@
 
                #:export (sierra-os-builder))
 
+
+
+(define graft_nvda
+  (options->transformation
+    '((with-graft . "mesa=nvda"))))
+
 (define* (make-services use-nvidia)
          (append (if use-nvidia
                    (list (simple-service
@@ -29,7 +35,14 @@
                                     "nvidia_modeset"
                                     "nvidia_uvm")))
                    (cons))
-                 (list (service dhcp-client-service-type))
+                 (list (service dhcp-client-service-type)
+                       (service gnome-desktop-service-type)
+                       (set-xorg-configuration
+                         (xorg-configuration
+                           (modules (append (if use-nvidia nvidia-driver cons) %default-xorg-modules))
+                           (server (if use-nvidia (graft_nvda xorg-server) xorg-server))
+                           (drivers (if use-nvidia '("nvidia") '()))
+                           (keyboard-layout (keyboard-layout "us" "altgr-intl")))))
                  %base-services
                  ))
 
