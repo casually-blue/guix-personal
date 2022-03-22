@@ -21,11 +21,6 @@
                #:export (sierra-os-builder))
 
 
-
-(define transform
-  (options->transformation
-    '((with-graft . "mesa=nvda"))))
-
 (define* (make-services use-nvidia)
          (append (if use-nvidia
                    (list (simple-service
@@ -42,7 +37,6 @@
                        (set-xorg-configuration
                          (xorg-configuration
                            (modules (append (if use-nvidia nvidia-driver cons) %default-xorg-modules))
-                           (server (if use-nvidia (transform xorg-server) xorg-server))
                            (drivers (if use-nvidia '("nvidia") '()))
                            (keyboard-layout (keyboard-layout "us" "altgr-intl")))))
                  %base-services
