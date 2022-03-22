@@ -9,6 +9,7 @@
                #:use-module (gnu services ssh)
                #:use-module (gnu services linux)
                #:use-module (gnu services desktop)
+               #:use-module (gnu services xorg)
 
                #:use-module (gnu packages screen)
                #:use-module (gnu packages ssh)
