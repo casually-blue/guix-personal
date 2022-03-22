@@ -37,11 +37,16 @@
                  (list (service dhcp-client-service-type)
                        (service gnome-desktop-service-type)
                        (service elogind-service-type)
-                       (set-xorg-configuration
-                         (xorg-configuration
-                           (modules (append (if use-nvidia (list nvidia-driver) cons) %default-xorg-modules))
-                           (drivers (if use-nvidia '("nvidia") '()))
-                           (keyboard-layout (keyboard-layout "us" "altgr-intl")))))
+                       (service network-manager-service-type)
+                       (service wpa-supplicant-service-type)
+
+                       (service slim-service-type
+                                (slim-configuration
+                                  (xorg-configuration (xorg-configuration
+                                                        (modules (append (if use-nvidia (list nvidia-driver) cons) %default-xorg-modules))
+
+                                                        (drivers (if use-nvidia '("nvidia") '())))))))
+
                  %base-services
                  ))
 
