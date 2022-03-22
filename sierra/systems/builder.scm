@@ -1,4 +1,6 @@
 (define-module (sierra systems builder)
+               #:use-module (guix transformations)
+
                #:use-module (gnu)
 
                #:use-module (nongnu system linux-initrd)
