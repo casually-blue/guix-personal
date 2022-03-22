@@ -38,7 +38,7 @@
                        (service gnome-desktop-service-type)
                        (set-xorg-configuration
                          (xorg-configuration
-                           (modules (append (if use-nvidia nvidia-driver cons) %default-xorg-modules))
+                           (modules (append (if use-nvidia (list nvidia-driver) cons) %default-xorg-modules))
                            (drivers (if use-nvidia '("nvidia") '()))
                            (keyboard-layout (keyboard-layout "us" "altgr-intl")))))
                  %base-services
