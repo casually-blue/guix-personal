@@ -36,6 +36,7 @@
                    (cons))
                  (list (service dhcp-client-service-type)
                        (service gnome-desktop-service-type)
+                       (service elogind-service-type)
                        (set-xorg-configuration
                          (xorg-configuration
                            (modules (append (if use-nvidia (list nvidia-driver) cons) %default-xorg-modules))
