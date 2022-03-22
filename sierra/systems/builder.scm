@@ -74,7 +74,9 @@
 
            (file-systems (append file-sys %base-file-systems))
 
-           (bootloader (bootloader-configuration (bootloader grub-bootloader)))
+           (bootloader (bootloader-configuration 
+			 (bootloader grub-efi-bootloader)
+			 (targets '("/boot/efi"))))
 
            (users (append (list (user-account
                                   (name "admin")
